@@ -13,6 +13,9 @@
     display: flex;
     flex-wrap: wrap;
   }
+  .empty {
+    color: #ddd;
+  }
   .empty,
   .day {
     width: calc(100% / 7);

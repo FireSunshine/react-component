@@ -58,11 +58,13 @@ const InternalCalendar: React.ForwardRefRenderFunction<CalendarRef, CalendarProp
     const firstDay = firstDayOfMonth(date.getFullYear(), date.getMonth()); // 获取当前月份的第一天是星期几
     const daysCount = daysOfMonth(date.getFullYear(), date.getMonth()); // 获取当前月份的天数
 
+    const lastMonthOfLastDay = daysOfMonth(date.getFullYear(), date.getMonth() - 1);
+
     // 添加空白格子，补齐本月第一天之前的格子
     for (let i = 0; i < firstDay; i++) {
-      days.push(
-        <div key={`empty-${i}`} className='empty'>
-          {i}
+      days.unshift(
+        <div key={`empty-${lastMonthOfLastDay - i}`} className='empty'>
+          {lastMonthOfLastDay - i}
         </div>,
       );
     }
@@ -85,6 +87,15 @@ const InternalCalendar: React.ForwardRefRenderFunction<CalendarRef, CalendarProp
           </div>,
         );
       }
+    }
+
+    for (let i = 1; i <= 42 - firstDay - daysCount; i++) {
+      const nextDays = new Date(date.getFullYear(), date.getMonth(), i).getDate();
+      days.push(
+        <div key={`empty-${nextDays}`} className='empty'>
+          {nextDays}
+        </div>,
+      );
     }
     return days; // 返回日期格子数组
   };
