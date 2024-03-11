@@ -126,6 +126,6 @@ const InternalCalendar: React.ForwardRefRenderFunction<CalendarRef, CalendarProp
   );
 };
 
-const Calendar = forwardRef(InternalCalendar);
+const MiniCalendar = forwardRef(InternalCalendar);
 
-export default Calendar; // 导出 Calendar 组件
+export default MiniCalendar; // 导出 Calendar 组件
