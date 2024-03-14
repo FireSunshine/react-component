@@ -11,10 +11,8 @@ function App() {
 
   return (
     <>
-      <button onClick={() => setInitDate(initDate.add(1, 'day'))}>+ day</button>
-
       <Calendar
-        defaultValue={dayjs('2024-1-20')}
+        defaultValue={dayjs('2024/1/20')}
         value={initDate}
         locale='zh-CN'
         onChange={date => setInitDate(date)}
