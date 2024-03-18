@@ -17,7 +17,6 @@ function CreateIcon(options: CreateIconOptions) {
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => {
     return (
       <Icon ref={ref} viewBox={viewBox} {...iconProps} {...props}>
-        {' '}
         {/* 渲染 Icon 组件，并传递相应 props 和 content */}
         {content} {/* 渲染图标内容 */}
       </Icon>
