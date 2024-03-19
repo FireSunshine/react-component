@@ -10,7 +10,7 @@ type SizeType = 'small' | 'middle' | 'large' | number | undefined;
 // 定义配置上下文的类型
 interface ConfigContextType {
   space?: {
-    size?: SizeType;
+    size?: SizeType | [SizeType, SizeType];
   };
 }
 
@@ -31,7 +31,7 @@ interface SpaceProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   style?: React.CSSProperties; // 可选的样式
   size?: SizeType | [SizeType, SizeType]; // 空间大小，可以是单个大小或者水平和垂直大小的数组
   direction?: 'horizontal' | 'vertical'; // 空间的方向，默认为水平方向
-  algin?: 'start' | 'end' | 'center' | 'baseline'; // 对齐方式，默认为居中对齐
+  align?: 'start' | 'end' | 'center' | 'baseline'; // 对齐方式，默认为居中对齐
   split?: React.ReactNode; // 分隔元素，用于分隔子元素
   wrap?: boolean; // 是否启用flex wrap，默认为false
 }
@@ -48,17 +48,14 @@ const Space: React.FC<SpaceProps> = props => {
     style,
     size = space?.size || 'small',
     direction = 'horizontal',
-    algin = 'center',
+    align = 'center',
     split,
     wrap = false,
     ...rest
   } = props;
 
-  // 根据方向确定对齐方式
-  const mergedAlign = direction === 'horizontal' && algin;
-
   // 使用classnames库创建类名
-  const classNames = cs('space', `space-${direction}`, { [`space-align-${mergedAlign}`]: mergedAlign }, className);
+  const classNames = cs('space', `space-${direction}`, { [`space-align-${align}`]: align }, className);
 
   // 创建水平和垂直空间的样式
   const otherStyles: React.CSSProperties = {};
